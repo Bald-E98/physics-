@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Study Tracker</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 25px;
+    color: #38bdf8;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    margin: 6px 0;
+}
+
+input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<h1>+2 Physics Study Checklist</h1>
+
+<div id="content">
+
+<h2>Chapter 1</h2>
+<ul>
+<li><label><input type="checkbox" id="ch1t1"> Coulomb's Law</label></li>
+<li><label><input type="checkbox" id="ch1t2"> Dipole Field</label></li>
+<li><label><input type="checkbox" id="ch1t3"> Gauss's Law Applications</label></li>
+</ul>
+
+<h2>Chapter 2</h2>
+<ul>
+<li><label><input type="checkbox" id="ch2t1"> Equipotential Surfaces</label></li>
+<li><label><input type="checkbox" id="ch2t2"> Capacitor with Dielectric</label></li>
+<li><label><input type="checkbox" id="ch2t3"> Energy in Capacitor</label></li>
+</ul>
+
+<h2>Chapter 3</h2>
+<ul>
+<li><label><input type="checkbox" id="ch3t1"> Drift Velocity</label></li>
+<li><label><input type="checkbox" id="ch3t2"> Kirchhoff's Laws</label></li>
+<li><label><input type="checkbox" id="ch3t3"> Wheatstone Bridge</label></li>
+<li><label><input type="checkbox" id="ch3t4"> Cell Combinations</label></li>
+</ul>
+
+<h2>Chapter 4</h2>
+<ul>
+<li><label><input type="checkbox" id="ch4t1"> Biot-Savart Law (Loop)</label></li>
+<li><label><input type="checkbox" id="ch4t2"> Ampere's Law (Solenoid)</label></li>
+<li><label><input type="checkbox" id="ch4t3"> Moving Coil Galvanometer</label></li>
+</ul>
+
+<h2>Chapter 5</h2>
+<ul>
+<li><label><input type="checkbox" id="ch5t1"> Magnetic Properties (Dia/Para/Ferro)</label></li>
+<li><label><input type="checkbox" id="ch5t2"> Earth's Magnetic Elements</label></li>
+</ul>
+
+<h2>Chapter 6</h2>
+<ul>
+<li><label><input type="checkbox" id="ch6t1"> Faraday's Law</label></li>
+<li><label><input type="checkbox" id="ch6t2"> Lenz's Law</label></li>
+<li><label><input type="checkbox" id="ch6t3"> Motional EMF</label></li>
+<li><label><input type="checkbox" id="ch6t4"> Self & Mutual Induction</label></li>
+</ul>
+
+<h2>Chapter 7</h2>
+<ul>
+<li><label><input type="checkbox" id="ch7t1"> RMS Value</label></li>
+<li><label><input type="checkbox" id="ch7t2"> LCR Resonance</label></li>
+<li><label><input type="checkbox" id="ch7t3"> Transformers (Principle & Losses)</label></li>
+</ul>
+
+<h2>Chapter 8</h2>
+<ul>
+<li><label><input type="checkbox" id="ch8t1"> EM Spectrum Uses</label></li>
+<li><label><input type="checkbox" id="ch8t2"> Characteristics of EM Waves</label></li>
+</ul>
+
+<h2>Chapter 9</h2>
+<ul>
+<li><label><input type="checkbox" id="ch9t1"> Total Internal Reflection</label></li>
+<li><label><input type="checkbox" id="ch9t2"> Lens Maker's Formula</label></li>
+<li><label><input type="checkbox" id="ch9t3"> Microscope & Telescope Diagrams</label></li>
+</ul>
+
+<h2>Chapter 10</h2>
+<ul>
+<li><label><input type="checkbox" id="ch10t1"> Huygens' Principle (Refraction & Reflection)</label></li>
+<li><label><input type="checkbox" id="ch10t2"> YDSE Fringe Width</label></li>
+</ul>
+
+<h2>Chapter 11</h2>
+<ul>
+<li><label><input type="checkbox" id="ch11t1"> Photoelectric Effect (Einstein's Equation)</label></li>
+<li><label><input type="checkbox" id="ch11t2"> De Broglie Wavelength</label></li>
+</ul>
+
+<h2>Chapter 12</h2>
+<ul>
+<li><label><input type="checkbox" id="ch12t1"> Bohr’s Model Postulates</label></li>
+<li><label><input type="checkbox" id="ch12t2"> Hydrogen Spectrum Series</label></li>
+</ul>
+
+<h2>Chapter 13</h2>
+<ul>
+<li><label><input type="checkbox" id="ch13t1"> Binding Energy Curve</label></li>
+<li><label><input type="checkbox" id="ch13t2"> Nuclear Fission</label></li>
+<li><label><input type="checkbox" id="ch13t3"> Nuclear Fusion</label></li>
+</ul>
+
+<h2>Chapter 14</h2>
+<ul>
+<li><label><input type="checkbox" id="ch14t1"> P-N Junction (Biasing)</label></li>
+<li><label><input type="checkbox" id="ch14t2"> Rectifiers (Half & Full Wave)</label></li>
+</ul>
+
+</div>
+
+<script>
+const checkboxes = document.querySelectorAll("input[type='checkbox']");
+
+// Load saved data
+window.onload = function () {
+    checkboxes.forEach(box => {
+        const saved = localStorage.getItem(box.id);
+        if (saved === "true") {
+            box.checked = true;
+            box.parentElement.classList.add("completed");
+        }
+    });
+};
+
+// Save when changed
+checkboxes.forEach(box => {
+    box.addEventListener("change", function () {
+        localStorage.setItem(box.id, box.checked);
+        
+        if (box.checked) {
+            box.parentElement.classList.add("completed");
+        } else {
+            box.parentElement.classList.remove("completed");
+        }
+    });
+});
+</script>
+
+</body>
+  </html>
