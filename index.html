@@ -5,220 +5,344 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Physics Study Tracker</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0f172a;
-    color: white;
-    padding: 20px;
-    max-width: 700px;
-    margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+  padding-bottom: 80px; /* Extra space for watermark and toast */
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 10px;
+.main-title {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  font-size: 32px;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #38bdf8, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
 }
 
-/* Button Styling */
-.btn-container {
-    text-align: center;
-    margin: 20px 0 30px 0;
+.subtitle {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
 }
 
-.class-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
-    color: white;
-    text-decoration: none;
-    padding: 12px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
+h2 { color: #38bdf8; margin-top: 25px; border-bottom: 1px solid #334155; padding-bottom: 5px; }
+h3 { margin-top: 15px; color: #94a3b8; }
+ul { list-style: none; padding-left: 0; }
+li { margin: 12px 0; display: flex; align-items: center; }
+input[type="checkbox"] { margin-right: 15px; transform: scale(1.2); cursor: pointer; }
+
+.link-btn {
+  display: block;
+  width: fit-content;
+  margin: 10px auto 10px auto;
+  padding: 8px 25px;
+  background: #38bdf8;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.3s ease;
 }
 
-.class-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+.watermark {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 25px;
+  text-decoration: none;
+  letter-spacing: 1px;
+  opacity: 0.8;
 }
 
-h2 {
-    margin-top: 35px;
-    color: #38bdf8;
-    border-bottom: 1px solid #1e293b;
-    padding-bottom: 8px;
+#login-screen {
+  text-align: center;
+  margin-top: 60px;
 }
 
-ul {
-    list-style: none;
-    padding-left: 0;
+input[type="text"] {
+  padding: 12px;
+  margin: 15px 0;
+  width: 280px;
+  border-radius: 6px;
+  border: 1px solid #38bdf8;
+  background: #1e293b;
+  color: white;
+  text-align: center;
 }
 
-li {
-    margin: 12px 0;
-    display: flex;
-    align-items: center;
-    background: #1e293b;
-    padding: 12px;
-    border-radius: 8px;
+button {
+  padding: 12px 40px;
+  background: #38bdf8;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
 }
 
-input[type="checkbox"] {
-    margin-right: 15px;
-    transform: scale(1.4);
-    cursor: pointer;
+button:hover {
+  background: #22d3ee;
+  transform: translateY(-2px);
 }
 
-label {
-    cursor: pointer;
-    width: 100%;
+#tracker {
+  display: none;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- THE TOAST POPUP STYLE --- */
+.toast {
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #22d3ee;
+  color: black;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.my-watermark {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #94a3b8;
+  opacity: 0.6;
+  text-decoration: none;
 }
 
 .completed {
     text-decoration: line-through;
-    opacity: 0.3;
+    opacity: 0.4;
 }
 </style>
 </head>
 
 <body>
 
-<h1>+2 Physics Study Checklist</h1>
+<h1 class="main-title">+2 Physics Study Tracker</h1>
+<p class="subtitle">Click below for +2 physics chapter-wise one-shot classes link</p>
 
-<div class="btn-container">
-    <a href="https://plus2oneshotss.wordpress.com/coming-soon/" target="_blank" class="class-btn">
-        🚀 Click for Classes
-    </a>
+<a href="https://plus2oneshotss.wordpress.com/physics/" target="_blank" class="link-btn">One Shot</a>
+<a href="https://mibsam.online" target="_blank" class="watermark">one shot © mibsam.online</a>
+
+<div id="login-screen">
+  <h3>Enter Your Name to Save Progress</h3>
+  <input type="text" id="nameInput" placeholder="Your Name">
+  <br>
+  <button onclick="startTracker()">Enter</button>
 </div>
 
-<div id="content">
+<div id="tracker">
 
 <h2>Chapter 1: Electric Charges and Fields</h2>
 <ul>
-<li><label><input type="checkbox" id="ch1t1"> Coulomb's Law</label></li>
-<li><label><input type="checkbox" id="ch1t2"> Dipole Field</label></li>
-<li><label><input type="checkbox" id="ch1t3"> Applications of Gauss's Law</label></li>
+<li><label><input type="checkbox"> Coulomb's Law</label></li>
+<li><label><input type="checkbox"> Dipole Field</label></li>
+<li><label><input type="checkbox"> Applications of Gauss's Law</label></li>
 </ul>
 
 <h2>Chapter 2: Electrostatic Potential and Capacitance</h2>
 <ul>
-<li><label><input type="checkbox" id="ch2t1"> Equipotential Surfaces</label></li>
-<li><label><input type="checkbox" id="ch2t2"> Capacitor with Dielectric</label></li>
-<li><label><input type="checkbox" id="ch2t3"> Energy Stored in a Capacitor</label></li>
+<li><label><input type="checkbox"> Equipotential Surfaces</label></li>
+<li><label><input type="checkbox"> Capacitor with Dielectric</label></li>
+<li><label><input type="checkbox"> Energy Stored in a Capacitor</label></li>
 </ul>
 
 <h2>Chapter 3: Current Electricity</h2>
 <ul>
-<li><label><input type="checkbox" id="ch3t1"> Drift Velocity</label></li>
-<li><label><input type="checkbox" id="ch3t2"> Kirchhoff's Laws</label></li>
-<li><label><input type="checkbox" id="ch3t3"> Wheatstone Bridge</label></li>
-<li><label><input type="checkbox" id="ch3t4"> Combination of Cells</label></li>
+<li><label><input type="checkbox"> Drift Velocity</label></li>
+<li><label><input type="checkbox"> Kirchhoff's Laws</label></li>
+<li><label><input type="checkbox"> Wheatstone Bridge</label></li>
+<li><label><input type="checkbox"> Combination of Cells</label></li>
 </ul>
 
 <h2>Chapter 4: Moving Charges and Magnetism</h2>
 <ul>
-<li><label><input type="checkbox" id="ch4t1"> Biot–Savart Law (Current Loop)</label></li>
-<li><label><input type="checkbox" id="ch4t2"> Ampere's Law (Solenoid)</label></li>
-<li><label><input type="checkbox" id="ch4t3"> Moving Coil Galvanometer</label></li>
+<li><label><input type="checkbox"> Biot–Savart Law (Current Loop)</label></li>
+<li><label><input type="checkbox"> Ampere's Law (Solenoid)</label></li>
+<li><label><input type="checkbox"> Moving Coil Galvanometer</label></li>
 </ul>
 
 <h2>Chapter 5: Magnetism and Matter</h2>
 <ul>
-<li><label><input type="checkbox" id="ch5t1"> Magnetic Properties (Diamagnetic, Paramagnetic, Ferromagnetic)</label></li>
-<li><label><input type="checkbox" id="ch5t2"> Earth's Magnetic Elements</label></li>
+<li><label><input type="checkbox"> Magnetic Properties (Diamagnetic, Paramagnetic, Ferromagnetic)</label></li>
+<li><label><input type="checkbox"> Earth's Magnetic Elements</label></li>
 </ul>
 
 <h2>Chapter 6: Electromagnetic Induction</h2>
 <ul>
-<li><label><input type="checkbox" id="ch6t1"> Faraday's Law</label></li>
-<li><label><input type="checkbox" id="ch6t2"> Lenz's Law</label></li>
-<li><label><input type="checkbox" id="ch6t3"> Motional EMF</label></li>
-<li><label><input type="checkbox" id="ch6t4"> Self Induction</label></li>
-<li><label><input type="checkbox" id="ch6t5"> Mutual Induction</label></li>
+<li><label><input type="checkbox"> Faraday's Law</label></li>
+<li><label><input type="checkbox"> Lenz's Law</label></li>
+<li><label><input type="checkbox"> Motional EMF</label></li>
+<li><label><input type="checkbox"> Self Induction</label></li>
+<li><label><input type="checkbox"> Mutual Induction</label></li>
 </ul>
 
 <h2>Chapter 7: Alternating Current</h2>
 <ul>
-<li><label><input type="checkbox" id="ch7t1"> RMS Value</label></li>
-<li><label><input type="checkbox" id="ch7t2"> LCR Circuit Resonance</label></li>
-<li><label><input type="checkbox" id="ch7t3"> Transformers (Principle and Losses)</label></li>
+<li><label><input type="checkbox"> RMS Value</label></li>
+<li><label><input type="checkbox"> LCR Circuit Resonance</label></li>
+<li><label><input type="checkbox"> Transformers (Principle and Losses)</label></li>
 </ul>
 
 <h2>Chapter 8: Electromagnetic Waves</h2>
 <ul>
-<li><label><input type="checkbox" id="ch8t1"> Characteristics of EM Waves</label></li>
-<li><label><input type="checkbox" id="ch8t2"> Uses of EM Spectrum</label></li>
+<li><label><input type="checkbox"> Characteristics of EM Waves</label></li>
+<li><label><input type="checkbox"> Uses of EM Spectrum</label></li>
 </ul>
 
 <h2>Chapter 9: Ray Optics and Optical Instruments</h2>
 <ul>
-<li><label><input type="checkbox" id="ch9t1"> Total Internal Reflection</label></li>
-<li><label><input type="checkbox" id="ch9t2"> Lens Maker's Formula</label></li>
-<li><label><input type="checkbox" id="ch9t3"> Microscope Diagram</label></li>
-<li><label><input type="checkbox" id="ch9t4"> Telescope Diagram</label></li>
+<li><label><input type="checkbox"> Total Internal Reflection</label></li>
+<li><label><input type="checkbox"> Lens Maker's Formula</label></li>
+<li><label><input type="checkbox"> Microscope Diagram</label></li>
+<li><label><input type="checkbox"> Telescope Diagram</label></li>
 </ul>
 
 <h2>Chapter 10: Wave Optics</h2>
 <ul>
-<li><label><input type="checkbox" id="ch10t1"> Huygens' Principle (Reflection & Refraction Proof)</label></li>
-<li><label><input type="checkbox" id="ch10t2"> Young's Double Slit Experiment (Fringe Width)</label></li>
+<li><label><input type="checkbox"> Huygens' Principle (Reflection & Refraction Proof)</label></li>
+<li><label><input type="checkbox"> Young's Double Slit Experiment (Fringe Width)</label></li>
 </ul>
 
 <h2>Chapter 11: Dual Nature of Radiation and Matter</h2>
 <ul>
-<li><label><input type="checkbox" id="ch11t1"> Photoelectric Effect</label></li>
-<li><label><input type="checkbox" id="ch11t2"> Einstein's Photoelectric Equation</label></li>
-<li><label><input type="checkbox" id="ch11t3"> De Broglie Wavelength</label></li>
+<li><label><input type="checkbox"> Photoelectric Effect</label></li>
+<li><label><input type="checkbox"> Einstein's Photoelectric Equation</label></li>
+<li><label><input type="checkbox"> De Broglie Wavelength</label></li>
 </ul>
 
 <h2>Chapter 12: Atoms</h2>
 <ul>
-<li><label><input type="checkbox" id="ch12t1"> Bohr's Model Postulates</label></li>
-<li><label><input type="checkbox" id="ch12t2"> Hydrogen Spectrum Series</label></li>
+<li><label><input type="checkbox"> Bohr's Model Postulates</label></li>
+<li><label><input type="checkbox"> Hydrogen Spectrum Series</label></li>
 </ul>
 
 <h2>Chapter 13: Nuclei</h2>
 <ul>
-<li><label><input type="checkbox" id="ch13t1"> Binding Energy Curve</label></li>
-<li><label><input type="checkbox" id="ch13t2"> Nuclear Fission</label></li>
-<li><label><input type="checkbox" id="ch13t3"> Nuclear Fusion</label></li>
+<li><label><input type="checkbox"> Binding Energy Curve</label></li>
+<li><label><input type="checkbox"> Nuclear Fission</label></li>
+<li><label><input type="checkbox"> Nuclear Fusion</label></li>
 </ul>
 
 <h2>Chapter 14: Semiconductor Electronics</h2>
 <ul>
-<li><label><input type="checkbox" id="ch14t1"> P-N Junction and Biasing</label></li>
-<li><label><input type="checkbox" id="ch14t2"> Half Wave Rectifier</label></li>
-<li><label><input type="checkbox" id="ch14t3"> Full Wave Rectifier</label></li>
+<li><label><input type="checkbox"> P-N Junction and Biasing</label></li>
+<li><label><input type="checkbox"> Half Wave Rectifier</label></li>
+<li><label><input type="checkbox"> Full Wave Rectifier</label></li>
 </ul>
+
+<button onclick="saveProgress()" style="width: 100%; margin-top: 40px; margin-bottom: 40px;">Save Progress</button>
 
 </div>
 
-<script>
-const checkboxes = document.querySelectorAll("input[type='checkbox']");
 
-window.onload = function () {
-    checkboxes.forEach(box => {
-        const saved = localStorage.getItem(box.id);
-        if (saved === "true") {
-            box.checked = true;
-            box.parentElement.parentElement.classList.add("completed");
-        }
-    });
+
+<div id="toast" class="toast">Progress Saved Successfully!</div>
+
+<a href="https://www.instagram.com/a.mmhel" target="_blank" class="my-watermark">
+  © Bald-e 2026
+</a>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "studytracker-9e7ae.firebaseapp.com",
+    projectId: "studytracker-9e7ae",
+    storageBucket: "studytracker-9e7ae.appspot.com",
+    appId: "1:686559758224:web:d85642bb7a4dba37e29515"
 };
 
-checkboxes.forEach(box => {
-    box.addEventListener("change", function () {
-        localStorage.setItem(box.id, box.checked);
-        if (box.checked) {
-            box.parentElement.parentElement.classList.add("completed");
-        } else {
-            box.parentElement.parentElement.classList.remove("completed");
-        }
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+let currentUser = "";
+
+window.startTracker = async function() {
+  const name = document.getElementById("nameInput").value.trim();
+  if(!name) return alert("Enter name");
+  currentUser = name;
+  
+  const docRef = doc(db, "physics_students", name);
+  const snap = await getDoc(docRef);
+  if(snap.exists()) {
+    const saved = snap.data().checkedTopics || [];
+    document.querySelectorAll("#tracker input[type='checkbox']").forEach(box => {
+      const topicText = box.parentElement.textContent.trim();
+      if(saved.includes(topicText)) {
+          box.checked = true;
+          box.parentElement.classList.add("completed");
+      }
     });
-});
+  }
+  document.getElementById("login-screen").style.display = "none";
+  document.getElementById("tracker").style.display = "block";
+};
+
+window.saveProgress = async function() {
+  if (!currentUser) return;
+  
+  let checked = [];
+  document.querySelectorAll("#tracker input[type='checkbox']").forEach(box => {
+    if(box.checked) {
+        checked.push(box.parentElement.textContent.trim());
+        box.parentElement.classList.add("completed");
+    } else {
+        box.parentElement.classList.remove("completed");
+    }
+  });
+
+  try {
+    await setDoc(doc(db, "physics_students", currentUser), {
+      name: currentUser,
+      checkedTopics: checked,
+      updatedAt: serverTimestamp()
+    });
+
+    // TRIGGER THE TOAST INSTEAD OF ALERT
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2000);
+
+  } catch (e) {
+    console.error(e);
+    alert("Error saving progress.");
+  }
+};
 </script>
 
 </body>
-</html>
+    </html>
+               
