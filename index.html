@@ -47,103 +47,230 @@ input[type="checkbox"] {
 
 <h1>+2 Physics Study Checklist</h1>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Study Tracker</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    color: white;
+    padding: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Button Styling */
+.btn-container {
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.class-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.class-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.6);
+}
+
+h2 {
+    margin-top: 35px;
+    color: #38bdf8;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 8px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+input[type="checkbox"] {
+    margin-right: 15px;
+    transform: scale(1.4);
+    cursor: pointer;
+}
+
+label {
+    cursor: pointer;
+    width: 100%;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.3;
+}
+</style>
+</head>
+
+<body>
+
+<h1>+2 Physics Study Checklist</h1>
+
+<div class="btn-container">
+    <a href="https://your-video-site-link.com" target="_blank" class="class-btn">
+        🚀 Click for Classes
+    </a>
+</div>
+
 <div id="content">
 
-<h2>Chapter 1</h2>
+<h2>Chapter 1: Electric Charges and Fields</h2>
 <ul>
 <li><label><input type="checkbox" id="ch1t1"> Coulomb's Law</label></li>
 <li><label><input type="checkbox" id="ch1t2"> Dipole Field</label></li>
-<li><label><input type="checkbox" id="ch1t3"> Gauss's Law Applications</label></li>
+<li><label><input type="checkbox" id="ch1t3"> Applications of Gauss's Law</label></li>
 </ul>
 
-<h2>Chapter 2</h2>
+<h2>Chapter 2: Electrostatic Potential and Capacitance</h2>
 <ul>
 <li><label><input type="checkbox" id="ch2t1"> Equipotential Surfaces</label></li>
 <li><label><input type="checkbox" id="ch2t2"> Capacitor with Dielectric</label></li>
-<li><label><input type="checkbox" id="ch2t3"> Energy in Capacitor</label></li>
+<li><label><input type="checkbox" id="ch2t3"> Energy Stored in a Capacitor</label></li>
 </ul>
 
-<h2>Chapter 3</h2>
+<h2>Chapter 3: Current Electricity</h2>
 <ul>
 <li><label><input type="checkbox" id="ch3t1"> Drift Velocity</label></li>
 <li><label><input type="checkbox" id="ch3t2"> Kirchhoff's Laws</label></li>
 <li><label><input type="checkbox" id="ch3t3"> Wheatstone Bridge</label></li>
-<li><label><input type="checkbox" id="ch3t4"> Cell Combinations</label></li>
+<li><label><input type="checkbox" id="ch3t4"> Combination of Cells</label></li>
 </ul>
 
-<h2>Chapter 4</h2>
+<h2>Chapter 4: Moving Charges and Magnetism</h2>
 <ul>
-<li><label><input type="checkbox" id="ch4t1"> Biot-Savart Law (Loop)</label></li>
+<li><label><input type="checkbox" id="ch4t1"> Biot–Savart Law (Current Loop)</label></li>
 <li><label><input type="checkbox" id="ch4t2"> Ampere's Law (Solenoid)</label></li>
 <li><label><input type="checkbox" id="ch4t3"> Moving Coil Galvanometer</label></li>
 </ul>
 
-<h2>Chapter 5</h2>
+<h2>Chapter 5: Magnetism and Matter</h2>
 <ul>
-<li><label><input type="checkbox" id="ch5t1"> Magnetic Properties (Dia/Para/Ferro)</label></li>
+<li><label><input type="checkbox" id="ch5t1"> Magnetic Properties (Diamagnetic, Paramagnetic, Ferromagnetic)</label></li>
 <li><label><input type="checkbox" id="ch5t2"> Earth's Magnetic Elements</label></li>
 </ul>
 
-<h2>Chapter 6</h2>
+<h2>Chapter 6: Electromagnetic Induction</h2>
 <ul>
 <li><label><input type="checkbox" id="ch6t1"> Faraday's Law</label></li>
 <li><label><input type="checkbox" id="ch6t2"> Lenz's Law</label></li>
 <li><label><input type="checkbox" id="ch6t3"> Motional EMF</label></li>
-<li><label><input type="checkbox" id="ch6t4"> Self & Mutual Induction</label></li>
+<li><label><input type="checkbox" id="ch6t4"> Self Induction</label></li>
+<li><label><input type="checkbox" id="ch6t5"> Mutual Induction</label></li>
 </ul>
 
-<h2>Chapter 7</h2>
+<h2>Chapter 7: Alternating Current</h2>
 <ul>
 <li><label><input type="checkbox" id="ch7t1"> RMS Value</label></li>
-<li><label><input type="checkbox" id="ch7t2"> LCR Resonance</label></li>
-<li><label><input type="checkbox" id="ch7t3"> Transformers (Principle & Losses)</label></li>
+<li><label><input type="checkbox" id="ch7t2"> LCR Circuit Resonance</label></li>
+<li><label><input type="checkbox" id="ch7t3"> Transformers (Principle and Losses)</label></li>
 </ul>
 
-<h2>Chapter 8</h2>
+<h2>Chapter 8: Electromagnetic Waves</h2>
 <ul>
-<li><label><input type="checkbox" id="ch8t1"> EM Spectrum Uses</label></li>
-<li><label><input type="checkbox" id="ch8t2"> Characteristics of EM Waves</label></li>
+<li><label><input type="checkbox" id="ch8t1"> Characteristics of EM Waves</label></li>
+<li><label><input type="checkbox" id="ch8t2"> Uses of EM Spectrum</label></li>
 </ul>
 
-<h2>Chapter 9</h2>
+<h2>Chapter 9: Ray Optics and Optical Instruments</h2>
 <ul>
 <li><label><input type="checkbox" id="ch9t1"> Total Internal Reflection</label></li>
 <li><label><input type="checkbox" id="ch9t2"> Lens Maker's Formula</label></li>
-<li><label><input type="checkbox" id="ch9t3"> Microscope & Telescope Diagrams</label></li>
+<li><label><input type="checkbox" id="ch9t3"> Microscope Diagram</label></li>
+<li><label><input type="checkbox" id="ch9t4"> Telescope Diagram</label></li>
 </ul>
 
-<h2>Chapter 10</h2>
+<h2>Chapter 10: Wave Optics</h2>
 <ul>
-<li><label><input type="checkbox" id="ch10t1"> Huygens' Principle (Refraction & Reflection)</label></li>
-<li><label><input type="checkbox" id="ch10t2"> YDSE Fringe Width</label></li>
+<li><label><input type="checkbox" id="ch10t1"> Huygens' Principle (Reflection & Refraction Proof)</label></li>
+<li><label><input type="checkbox" id="ch10t2"> Young's Double Slit Experiment (Fringe Width)</label></li>
 </ul>
 
-<h2>Chapter 11</h2>
+<h2>Chapter 11: Dual Nature of Radiation and Matter</h2>
 <ul>
-<li><label><input type="checkbox" id="ch11t1"> Photoelectric Effect (Einstein's Equation)</label></li>
-<li><label><input type="checkbox" id="ch11t2"> De Broglie Wavelength</label></li>
+<li><label><input type="checkbox" id="ch11t1"> Photoelectric Effect</label></li>
+<li><label><input type="checkbox" id="ch11t2"> Einstein's Photoelectric Equation</label></li>
+<li><label><input type="checkbox" id="ch11t3"> De Broglie Wavelength</label></li>
 </ul>
 
-<h2>Chapter 12</h2>
+<h2>Chapter 12: Atoms</h2>
 <ul>
-<li><label><input type="checkbox" id="ch12t1"> Bohr’s Model Postulates</label></li>
+<li><label><input type="checkbox" id="ch12t1"> Bohr's Model Postulates</label></li>
 <li><label><input type="checkbox" id="ch12t2"> Hydrogen Spectrum Series</label></li>
 </ul>
 
-<h2>Chapter 13</h2>
+<h2>Chapter 13: Nuclei</h2>
 <ul>
 <li><label><input type="checkbox" id="ch13t1"> Binding Energy Curve</label></li>
 <li><label><input type="checkbox" id="ch13t2"> Nuclear Fission</label></li>
 <li><label><input type="checkbox" id="ch13t3"> Nuclear Fusion</label></li>
 </ul>
 
-<h2>Chapter 14</h2>
+<h2>Chapter 14: Semiconductor Electronics</h2>
 <ul>
-<li><label><input type="checkbox" id="ch14t1"> P-N Junction (Biasing)</label></li>
-<li><label><input type="checkbox" id="ch14t2"> Rectifiers (Half & Full Wave)</label></li>
+<li><label><input type="checkbox" id="ch14t1"> P-N Junction and Biasing</label></li>
+<li><label><input type="checkbox" id="ch14t2"> Half Wave Rectifier</label></li>
+<li><label><input type="checkbox" id="ch14t3"> Full Wave Rectifier</label></li>
 </ul>
 
 </div>
+
+<script>
+const checkboxes = document.querySelectorAll("input[type='checkbox']");
+
+window.onload = function () {
+    checkboxes.forEach(box => {
+        const saved = localStorage.getItem(box.id);
+        if (saved === "true") {
+            box.checked = true;
+            box.parentElement.parentElement.classList.add("completed");
+        }
+    });
+};
+
+checkboxes.forEach(box => {
+    box.addEventListener("change", function () {
+        localStorage.setItem(box.id, box.checked);
+        if (box.checked) {
+            box.parentElement.parentElement.classList.add("completed");
+        } else {
+            box.parentElement.parentElement.classList.remove("completed");
+        }
+    });
+});
+</script>
+
+</body>
+</html>
 
 <script>
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
