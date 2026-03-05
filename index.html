@@ -7,55 +7,6 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-}
-
-h2 {
-    margin-top: 25px;
-    color: #38bdf8;
-}
-
-ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-li {
-    margin: 6px 0;
-}
-
-input[type="checkbox"] {
-    margin-right: 8px;
-    transform: scale(1.2);
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-</style>
-</head>
-
-<body>
-
-<h1>+2 Physics Study Checklist</h1>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Study Tracker</title>
-
-<style>
-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #0f172a;
     color: white;
@@ -138,7 +89,7 @@ label {
 
 <div class="btn-container">
     <a href="https://plus2oneshotss.wordpress.com/coming-soon/" target="_blank" class="class-btn">
-        🚀 Click for Classes!
+        🚀 Click for Classes
     </a>
 </div>
 
@@ -271,34 +222,3 @@ checkboxes.forEach(box => {
 
 </body>
 </html>
-
-<script>
-const checkboxes = document.querySelectorAll("input[type='checkbox']");
-
-// Load saved data
-window.onload = function () {
-    checkboxes.forEach(box => {
-        const saved = localStorage.getItem(box.id);
-        if (saved === "true") {
-            box.checked = true;
-            box.parentElement.classList.add("completed");
-        }
-    });
-};
-
-// Save when changed
-checkboxes.forEach(box => {
-    box.addEventListener("change", function () {
-        localStorage.setItem(box.id, box.checked);
-        
-        if (box.checked) {
-            box.parentElement.classList.add("completed");
-        } else {
-            box.parentElement.classList.remove("completed");
-        }
-    });
-});
-</script>
-
-</body>
-  </html>
